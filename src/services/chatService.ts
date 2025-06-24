@@ -26,7 +26,7 @@ interface ChatRequest {
   messages: ChatMessage[];
   temperature?: number;
   top_p?: number;
-  max_completion_tokens?: number;
+  max_tokens?: number;
   stream?: boolean;
   frequency_penalty?: number;
   presence_penalty?: number;
@@ -122,9 +122,17 @@ interface UIMessage {
 }
 
 class ChatService {
-  private readonly apiUrl = 'https://wbigu561gn7c40-8000.proxy.runpod.net/v1/chat/completions';
+  private readonly apiUrl: string;
   private readonly apiKey = import.meta.env.VITE_API_KEY || '';
   private conversationHistory: ChatMessage[] = [];
+
+  constructor() {
+    const runpodId = import.meta.env.VITE_RUNPOD_ID;
+    if (!runpodId) {
+      throw new Error('VITE_RUNPOD_ID environment variable is required. Please set it in your .env file.');
+    }
+    this.apiUrl = `https://${runpodId}-8000.proxy.runpod.net/v1/chat/completions`;
+  }
 
   private convertUIMessagesToAPIFormat(uiMessages: UIMessage[]): ChatMessage[] {
     return uiMessages.map(msg => ({
@@ -155,11 +163,11 @@ class ChatService {
     });
 
     const requestBody: ChatRequest = {
-      model: 'MiniMax-M1',
+      model: 'MiniMax-M1-80k',
       messages: messages,
       temperature: 1.0,
       top_p: 0.95,
-      max_completion_tokens: 8192,
+      max_tokens: 8192,
       stream: false,
       frequency_penalty: 0,
       presence_penalty: 0,
