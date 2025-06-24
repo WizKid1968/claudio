@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%
+  }
+
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%
+  }
+
+  html, body {
+    @apply font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #fafafa;
+  }
+  
+  #root {
+    height: 100%;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .chat-message {
+    @apply break-words leading-relaxed;
+  }
+  
+  .chat-message p {
+    @apply mb-2 last:mb-0;
+  }
+  
+  .chat-bubble-user {
+    @apply bg-blue-500 text-white rounded-2xl rounded-br-md;
+  }
+  
+  .chat-bubble-assistant {
+    @apply bg-white border border-gray-200 text-gray-900 rounded-2xl rounded-bl-md shadow-sm;
+  }
+}
+
+img {
+  object-position: top;
+}
