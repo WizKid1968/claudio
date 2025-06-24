@@ -123,7 +123,7 @@ interface UIMessage {
 
 class ChatService {
   private readonly apiUrl = 'https://wbigu561gn7c40-8000.proxy.runpod.net/v1/chat/completions';
-  private readonly apiKey = process.env.VITE_API_KEY || '';
+  private readonly apiKey = import.meta.env.VITE_API_KEY || '';
   private conversationHistory: ChatMessage[] = [];
 
   private convertUIMessagesToAPIFormat(uiMessages: UIMessage[]): ChatMessage[] {
