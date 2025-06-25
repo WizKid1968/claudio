@@ -3,9 +3,5 @@
   "buildCommand": "tsc -b && vite build",
   "outputDirectory": "dist",
   "installCommand": "yarn install",
-  "devCommand": "vite",
-  "env": {
-    "VITE_API_KEY": "@vite_api_key",
-    "VITE_RUNPOD_ID": "@vite_runpod_id"
-  }
+  "devCommand": "vite"
 }
